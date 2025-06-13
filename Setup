@@ -274,11 +274,13 @@ if [ -e "SetupOrion" ]; then
     rm SetupOrion
 fi
 
-# Descargando script
 curl -sSL https://raw.githubusercontent.com/oriondesign2015/SetupOrion/main/SetupOrion -o SetupOrion
 if [ $? -eq 0 ]; then
     echo "14/14 - [ OK ]  - Descargando el script"
-    # Executa o script baixado
+    # Modificar valores en el script
+    sed -i 's/DEFAULT_ORGANIZATION_NAME=OrionDesign/DEFAULT_ORGANIZATION_NAME=Aplicki/g' SetupOrion
+    sed -i 's/DEFAULT_PROJECT_NAME=SetupOrion/DEFAULT_PROJECT_NAME=Renov-PC/g' SetupOrion
+    # Ejecutar el script modificado
     chmod +x SetupOrion
     ./SetupOrion
 else
